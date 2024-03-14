@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delayed Appear and Slide Down</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Hide scrollbars to enhance the effect */
+    }
+
+    #hiddenDiv {
+      position: relative;
+      left: 40%;
+      transform: translateX(-50%,-50%);
+      background-color: green;
+      color: #fff;
+      padding: 20px;
+height:300px;
+border-radius:20px;
+    }
+#hiddenDiv p{
+text-align:center;
+font-size:20px;
+color:black;
+}
+#hiddenDiv a{
+border:1px solid black;
+padding:6px 10px;
+border-radius:10px;
+background:black;
+color:white;
+text-decoration:none;
+}
+    #closeButton {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      cursor: pointer;
+      color: black;
+    }
+#textDiv{
+opacity:1;
+backgroundgreen;
+top:30%;
+width:60%;
+height:300px;
+position:fixed;
+bottom:10%;
+     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+@media(max-width:768px){
+#textDiv{
+width:80%;
+}
+#hiddenDiv{
+left:15%;
+height:400px;
+}
+#hiddenDiv p{
+font-size:16px;
+}
+#hiddenDiv a{
+border:1px solid black;
+padding:6px 10px;
+border-radius:10px;
+background:black;
+color:white;
+text-decoration:none;
+}
+}
+  </style>
+</head>
+<body>
+<div id="textDiv">
+<div id="hiddenDiv">
+  <span id="closeButton" onclick="closeDiv()">X</span>
+  <p>Welcome to Yeti360, your go-to destination for insightful articles, engaging stories, and the latest trends. Explore a world of knowledge and inspiration as we embark on a journey through the realms of technology, innovation, and beyond. Join us in discovering the stories that matter and stay connected with the Yeti360 community.<br><br>
+If you are new to this website please share your feedback and subscribe for latest blogs related Himachal Pradesh.<br><br>
+<a href="#Subscribe">Subscribe</a>
+</p>
+</div>
+</div>
+ <script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    const hasDivBeenDisplayed = localStorage.getItem('divDisplayed');
+
+    if (!hasDivBeenDisplayed) {
+     
+      setTimeout(() => {
+        const textDiv = document.getElementById('textDiv');
+        textDiv.style.opacity = '1';
+
+       
+        localStorage.setItem('divDisplayed', 'true');
+      }, 3000);
+    }
+  });
+
+  function closeDiv() {
+    const textDiv = document.getElementById('textDiv');
+    textDiv.style.opacity = '0';
+    textDiv.style.transform = 'translateY(100px)';
+
+    // Optional: Remove the div from the DOM after the sliding animation
+    setTimeout(() => {
+      textDiv.style.display = 'none';
+    }, 500);
+  }
+</script>
+
+</body>
+</html>
